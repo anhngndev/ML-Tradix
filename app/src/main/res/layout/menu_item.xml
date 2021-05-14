@@ -42,8 +42,8 @@
             android:fontFamily="@font/raleway"
             android:gravity="center_vertical"
             android:text="xxxxx"
-            android:textColor="@color/dark_gray"
-            android:textSize="14sp"
+            android:textColor="#454545"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="RtlCompat" />

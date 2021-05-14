@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.mltradix.MenusModel
 import com.example.mltradix.R
 import com.example.mltradix.adapter.MenusAdapter
+import com.example.mltradix.adapter.MenusAdapterTest
 import com.example.mltradix.adapter.TitleAdapter
 
 
@@ -39,6 +40,7 @@ class MenuFragment : Fragment(), MenusAdapter.CallBack {
     private lateinit var recyclerViewBase: RecyclerView
     private lateinit var mutableListBase: MutableList<MenusModel>
     private lateinit var menusAdapterBase: MenusAdapter
+    private lateinit var menusAdapterTest: MenusAdapterTest
 
     private lateinit var recyclerViewTools: RecyclerView
     private lateinit var mutableListTools: MutableList<MenusModel>
@@ -50,8 +52,6 @@ class MenuFragment : Fragment(), MenusAdapter.CallBack {
 
     private fun initView(view: View) {
         var staggeredGridLayoutManager = StaggeredGridLayoutManager(1, RecyclerView.VERTICAL)
-        var staggeredGridLayoutManagerTools = StaggeredGridLayoutManager(1, RecyclerView.VERTICAL)
-        var staggeredGridLayoutManagerMarkets = StaggeredGridLayoutManager(1, RecyclerView.VERTICAL)
 
         recyclerViewBase = view.findViewById(R.id.recycler_view_1)
         mutableListBase = mutableListOf()
@@ -59,27 +59,19 @@ class MenuFragment : Fragment(), MenusAdapter.CallBack {
         mutableListBase.add(MenusModel(R.drawable.icons_8_left_and_right_arrows, "Predictions"))
         mutableListBase.add(MenusModel(R.drawable.icons_8_pin, "Saved elements"))
         mutableListBase.add(MenusModel(R.drawable.icons_8_no_entry, "Remove Ads"))
-        menusAdapterBase = MenusAdapter(mutableListBase, this, 0)
-        recyclerViewBase.layoutManager = staggeredGridLayoutManager
-        recyclerViewBase.adapter = menusAdapterBase
 
-        recyclerViewTools = view.findViewById(R.id.recycler_view_2)
         mutableListTools = mutableListOf()
         mutableListTools.add(MenusModel(R.drawable.icons_8_profit_2, "Select Stocks"))
         mutableListTools.add(MenusModel(R.drawable.icons_8_swap, "Currency Exchange"))
         mutableListTools.add(MenusModel(R.drawable.icons_8_video_call, "Webinar"))
         mutableListTools.add(MenusModel(R.drawable.icons_8_rent, "Best Broker"))
-        menusAdapterTools = MenusAdapter(mutableListTools, this, 1)
-        recyclerViewTools.layoutManager = staggeredGridLayoutManagerTools
-        recyclerViewTools.adapter = menusAdapterTools
-
-        recyclerViewMarkets = view.findViewById(R.id.recycler_view_3)
+//
         mutableListMarkets = mutableListOf()
         mutableListMarkets.add(MenusModel(R.drawable.icons_8_profit_2, "Select Stocks"))
-        menusAdapterMarkets = MenusAdapter(mutableListMarkets, this, 1)
-        recyclerViewMarkets.layoutManager = staggeredGridLayoutManagerMarkets
-        recyclerViewMarkets.adapter = menusAdapterMarkets
-
+//
+        menusAdapterTest = MenusAdapterTest(mutableListBase, "Tools",mutableListTools, "Market", mutableListMarkets)
+        recyclerViewBase.layoutManager = staggeredGridLayoutManager
+        recyclerViewBase.adapter = menusAdapterTest
     }
 
     companion object {
