@@ -76,8 +76,6 @@ class LoginFragment : Fragment() {
         }
 
         fillAccountInfor()
-
-
     }
 
     var indexFragment: Int = 0

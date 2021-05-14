@@ -64,17 +64,12 @@ class HomeActivity : AppCompatActivity() {
                 supportFragmentManager.popBackStack()
             }
             "home" -> {
-                val builder =
-                    AlertDialog.Builder(this@HomeActivity)
+                val builder = AlertDialog.Builder(this@HomeActivity)
                 builder.setTitle("TRADIX")
                 builder.setMessage("Do you want to log out?")
                     .setCancelable(false)
-                    .setPositiveButton(
-                        "Yes"
-                    ) { dialog, id -> finish() }
-                    .setNegativeButton(
-                        "No"
-                    ) { dialog, id -> dialog.cancel() }
+                    .setPositiveButton("Yes") { dialog, id -> finish() }
+                    .setNegativeButton("No") { dialog, id -> dialog.cancel() }
                 val alert = builder.create()
                 alert.show()
             }
@@ -86,18 +81,15 @@ class HomeActivity : AppCompatActivity() {
         when (supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name) {
             "detail new" -> {
                 bottomNavigationView.selectedItemId = R.id.news
-
             }
             "news" -> {
                 bottomNavigationView.selectedItemId = R.id.news
             }
             "home" -> {
                 bottomNavigationView.selectedItemId = R.id.home
-
             }
             "coin" -> {
                 bottomNavigationView.selectedItemId = R.id.coin
-
             }
             "menu" -> {
                 bottomNavigationView.selectedItemId = R.id.menu

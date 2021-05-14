@@ -33,7 +33,7 @@ class TitleSecondAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
         val mess: TitleSecondModel = mutableList[position]
-        holder.name.text = mess.name
+        holder.name.text = mess.name + "-" +position
         holder.code.text = mess.code
         holder.time.text = mess.time
         holder.price.text = mess.price
