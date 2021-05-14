@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -42,7 +43,6 @@ class HomeFragment : Fragment(), TitleAdapter.CallBack {
     private lateinit var secondRecyclerView: RecyclerView
     private lateinit var secondMutableList: MutableList<TitleSecondModel>
     private lateinit var secondTitleAdapter: TitleSecondAdapter
-    var touchHelper : ItemTouchHelper? = null
 
     private fun initView(view: View) {
         recyclerView = view.findViewById(R.id.recycler_view_1)
@@ -83,7 +83,36 @@ class HomeFragment : Fragment(), TitleAdapter.CallBack {
         secondRecyclerView.layoutManager = staggeredGridLayoutManager2
         secondRecyclerView.adapter = secondTitleAdapter
 
+        var itemTouchHelper: ItemTouchHelper = ItemTouchHelper(object :
+            ItemTouchHelper.SimpleCallback(
+                ItemTouchHelper.DOWN or ItemTouchHelper.UP,
+                ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
+            ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                secondTitleAdapter.notifyItemMoved(viewHolder.layoutPosition, target.layoutPosition)
+                return true
+            }
 
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                var positionOfData = viewHolder.layoutPosition
+                when (direction) {
+                    ItemTouchHelper.LEFT -> {
+                        secondMutableList.removeAt(positionOfData)
+                        secondTitleAdapter.notifyItemRemoved(viewHolder.layoutPosition)
+                    }
+                    ItemTouchHelper.RIGHT -> {
+                        secondMutableList.removeAt(positionOfData)
+                        secondTitleAdapter.notifyItemRemoved(viewHolder.layoutPosition)
+                    }
+
+                }
+            }
+        })
+        itemTouchHelper.attachToRecyclerView(secondRecyclerView)
     }
 
     companion object {
