@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="145dp"
+    android:paddingBottom="18dp"
+    tools:ignore="RtlCompat">
+
+    <TextView
+        android:id="@+id/text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/raleway_black"
+        android:text="DOWN JONES"
+        android:textColor="#676767"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/lato"
+        android:text="NYSE"
+        android:textColor="#4d4d4d"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_1" />
+
+    <TextView
+        android:id="@+id/text_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/lato"
+        android:text="NYSE"
+        android:textColor="#4d4d4d"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@id/text_2"
+        app:layout_constraintTop_toBottomOf="@id/text_1" />
+
+    <TextView
+        android:id="@+id/text_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/border_13_green"
+        android:fontFamily="@font/raleway"
+        android:gravity="center"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="5dp"
+        android:text="20.047,50"
+        android:textColor="#020202"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato"
+        android:textColor="#000000"
+        android:gravity="left"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_4"
+        android:text="+203 (+1,04%)" />
+
+    <TextView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/opacity_gray"
+        android:layout_marginBottom="75dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/more"
+        android:layout_width="120dp"
+        android:layout_height="34dp"
+        android:background="@drawable/border_12"
+        android:fontFamily="@font/raleway"
+        android:gravity="center"
+        android:textColor="#222222"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="NEO Chart" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/icons_8_increase"
+        android:id="@+id/home"
+        android:title="Tin nhắn" />
+    <item
+        android:id="@+id/coin"
+        android:icon="@drawable/icons_8_chart"
+        android:title="Danh bạ" />
+    <item
+        android:id="@+id/news"
+        android:icon="@drawable/icons_8_news"
+        android:title="Nhóm" />
+    <item
+        android:id="@+id/menu"
+        android:icon="@drawable/icons_8_customer"
+        android:title="Nhật ký" />
+
+
+
+</menu>

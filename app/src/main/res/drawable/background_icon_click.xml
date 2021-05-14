@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="20dp"/>
+    <gradient android:startColor="@color/icon_selector"
+        android:endColor="@color/icon_selector_end"
+        android:angle="270"/>
+    <solid android:color="@color/icon_selector"/>
+
+</shape>

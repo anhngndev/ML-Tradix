@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".login.LoginFragment"
+    tools:ignore="RtlCompat">
+
+    <ImageView
+        android:id="@+id/image_1"
+        android:layout_width="158dp"
+        android:layout_height="186dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/illustration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_2"
+        android:layout_width="match_parent"
+        android:layout_height="366dp"
+        android:layout_marginTop="115dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/componente_7_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="184dp"
+        android:fontFamily="@font/raleway_black"
+        android:text="TRADIX"
+        android:textColor="#2b2828"
+        android:textSize="40sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@id/image_2"
+        app:layout_constraintStart_toStartOf="@id/image_2"
+        app:layout_constraintTop_toTopOf="@id/image_2" />
+
+    <ImageView
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="196.5dp"
+        android:src="@drawable/coin"
+        app:layout_constraintStart_toEndOf="@id/text_1"
+        app:layout_constraintTop_toTopOf="@id/image_2" />
+
+    <TextView
+        android:id="@+id/text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_light"
+        android:text="The future of trading"
+        android:textColor="#171717"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@id/image_2"
+        app:layout_constraintStart_toStartOf="@id/image_2"
+        app:layout_constraintTop_toBottomOf="@id/text_1" />
+
+    <TextView
+        android:id="@+id/title_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_black"
+        android:text="Welcome!"
+        android:textColor="#656565"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@id/image_2"
+        app:layout_constraintEnd_toEndOf="@id/image_2"
+        app:layout_constraintStart_toStartOf="@id/image_2" />
+
+    <EditText
+        android:id="@+id/edit_text_email"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/border_20_gray_line"
+        android:fontFamily="@font/lato_light"
+        android:hint="E-mail"
+        android:paddingStart="22.5dp"
+        android:textColorHint="#9d9d9d"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_2" />
+
+    <EditText
+        android:id="@+id/edit_text_pass"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_20_gray_line"
+        android:fontFamily="@font/lato_light"
+        android:hint="Password"
+        android:paddingStart="22.5dp"
+        android:textColorHint="#9d9d9d"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_email" />
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_20_gradient_purple"
+        android:text="login"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_pass" />
+
+    <TextView
+        android:id="@+id/forgot_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="15sp"
+        android:fontFamily="@font/lato_light"
+        android:text="Forgot Password?"
+        android:textColor="#9d9d9d"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@id/button_login"
+        app:layout_constraintTop_toBottomOf="@id/button_login" />
+
+    <TextView
+        android:id="@+id/sign_up_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
+        android:paddingHorizontal="5dp"
+        android:layout_marginEnd="15sp"
+        android:fontFamily="@font/lato_light"
+        android:text="Sign Up"
+        android:textColor="#9d9d9d"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@id/button_login"
+        app:layout_constraintTop_toBottomOf="@id/button_login"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
