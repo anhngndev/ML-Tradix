@@ -52,8 +52,8 @@ class MenuFragment : Fragment(), MenusAdapter.CallBack {
 
     private fun initView(view: View) {
         var staggeredGridLayoutManager = StaggeredGridLayoutManager(1, RecyclerView.VERTICAL)
-
         recyclerViewBase = view.findViewById(R.id.recycler_view_1)
+
         mutableListBase = mutableListOf()
         mutableListBase.add(MenusModel(R.drawable.icons_8_alarm, "Alerts"))
         mutableListBase.add(MenusModel(R.drawable.icons_8_left_and_right_arrows, "Predictions"))
@@ -65,10 +65,10 @@ class MenuFragment : Fragment(), MenusAdapter.CallBack {
         mutableListTools.add(MenusModel(R.drawable.icons_8_swap, "Currency Exchange"))
         mutableListTools.add(MenusModel(R.drawable.icons_8_video_call, "Webinar"))
         mutableListTools.add(MenusModel(R.drawable.icons_8_rent, "Best Broker"))
-//
+
         mutableListMarkets = mutableListOf()
         mutableListMarkets.add(MenusModel(R.drawable.icons_8_profit_2, "Select Stocks"))
-//
+
         menusAdapterTest = MenusAdapterTest(mutableListBase, "Tools",mutableListTools, "Market", mutableListMarkets)
         recyclerViewBase.layoutManager = staggeredGridLayoutManager
         recyclerViewBase.adapter = menusAdapterTest

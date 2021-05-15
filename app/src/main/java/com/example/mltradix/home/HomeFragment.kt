@@ -1,9 +1,12 @@
 package com.example.mltradix.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -38,23 +41,6 @@ class HomeFragment : Fragment(), TitleAdapter.CallBack {
         setAction()
     }
 
-    private fun setAction() {
-
-        loadMore.setOnClickListener {
-            var oldSize = secondMutableList.size
-            getData(secondMutableList)
-            secondTitleAdapter.notifyDataSetChanged()
-            secondRecyclerView.scrollToPosition(oldSize)
-            Toast.makeText(
-                context,
-                oldSize.toString() + "/" + secondMutableList.size,
-                Toast.LENGTH_SHORT
-            ).show()
-
-//            loadMore.visibility = View.INVISIBLE
-        }
-    }
-
     private lateinit var recyclerView: RecyclerView
     private lateinit var mutableList: MutableList<String>
     private lateinit var titleAdapter: TitleAdapter
@@ -64,10 +50,82 @@ class HomeFragment : Fragment(), TitleAdapter.CallBack {
     private lateinit var secondTitleAdapter: TitleSecondAdapter
 
     lateinit var loadMore: TextView
+    lateinit var progressBar: ProgressBar
+    var loadding: Boolean = false
+
+
+    private fun setAction() {
+
+        secondRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                Log.e("Scroll", "$dx - $dy")
+                if (dy > 0 && !loadding){
+                    loadMore.visibility = View.VISIBLE
+                }
+                if (dy < 0){
+                    loadMore.visibility = View.GONE
+                }
+                super.onScrolled(recyclerView, dx, dy)
+            }
+        })
+
+        loadMore.setOnClickListener {
+            var oldSize = secondMutableList.size
+            loadding = true
+            loadMore.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
+
+            Handler().postDelayed({
+                getData(secondMutableList)
+                secondTitleAdapter.notifyDataSetChanged()
+                secondRecyclerView.scrollToPosition(oldSize)
+                Toast.makeText(context, oldSize.toString() + "/" + secondMutableList.size, Toast.LENGTH_SHORT).show()
+
+                progressBar.visibility = View.GONE
+                loadding = false
+            },3000 )
+        }
+
+//        SET_TOUCH_HELPER
+        var itemTouchHelper: ItemTouchHelper =
+            ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+                ItemTouchHelper.DOWN or ItemTouchHelper.UP,
+                ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
+            ) {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+                    secondTitleAdapter.notifyItemMoved(
+                        viewHolder.layoutPosition,
+                        target.layoutPosition
+                    )
+                    return true
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    var positionOfData = viewHolder.layoutPosition
+                    when (direction) {
+                        ItemTouchHelper.LEFT -> {
+                            secondMutableList.removeAt(positionOfData)
+                            secondTitleAdapter.notifyItemRemoved(viewHolder.layoutPosition)
+                        }
+                        ItemTouchHelper.RIGHT -> {
+                            secondMutableList.removeAt(positionOfData)
+                            secondTitleAdapter.notifyItemRemoved(viewHolder.layoutPosition)
+                        }
+                    }
+                }
+            })
+
+        itemTouchHelper.attachToRecyclerView(secondRecyclerView)
+    }
 
     private fun initView(view: View) {
         recyclerView = view.findViewById(R.id.recycler_view_1)
         loadMore = view.findViewById(R.id.load_more)
+        progressBar = view.findViewById(R.id.progress_bar)
 
 //        FIRST_TITLE_ADAPTER
         mutableList = mutableListOf()
@@ -94,38 +152,6 @@ class HomeFragment : Fragment(), TitleAdapter.CallBack {
         secondRecyclerView.adapter = secondTitleAdapter
         secondRecyclerView.setHasFixedSize(true)
 
-//        SET_TOUCH_HELPER
-        var itemTouchHelper: ItemTouchHelper = ItemTouchHelper(object :
-            ItemTouchHelper.SimpleCallback(
-                ItemTouchHelper.DOWN or ItemTouchHelper.UP,
-                ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
-            ) {
-
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                secondTitleAdapter.notifyItemMoved(viewHolder.layoutPosition, target.layoutPosition)
-                return true
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                var positionOfData = viewHolder.layoutPosition
-                when (direction) {
-                    ItemTouchHelper.LEFT -> {
-                        secondMutableList.removeAt(positionOfData)
-                        secondTitleAdapter.notifyItemRemoved(viewHolder.layoutPosition)
-                    }
-                    ItemTouchHelper.RIGHT -> {
-                        secondMutableList.removeAt(positionOfData)
-                        secondTitleAdapter.notifyItemRemoved(viewHolder.layoutPosition)
-                    }
-
-                }
-            }
-        })
-        itemTouchHelper.attachToRecyclerView(secondRecyclerView)
     }
 
     fun getData(list: MutableList<TitleSecondModel>) {
@@ -143,7 +169,6 @@ class HomeFragment : Fragment(), TitleAdapter.CallBack {
         list.add(item3)
         list.add(item4)
         list.add(item4)
-
     }
 
     companion object {

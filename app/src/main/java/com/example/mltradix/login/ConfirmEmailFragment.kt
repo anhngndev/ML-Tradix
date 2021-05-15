@@ -1,5 +1,6 @@
 package com.example.mltradix.login
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -13,6 +14,9 @@ import com.example.mltradix.R
 
 
 class ConfirmEmailFragment : Fragment() {
+
+    val PASS: String = "pass"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -43,7 +47,7 @@ class ConfirmEmailFragment : Fragment() {
                 handler.postDelayed(runnableTime, 100)
             }
             if (currentTime == 0) {
-
+                savePass("123")
                 activity?.supportFragmentManager?.beginTransaction()
                     ?.replace(R.id.container, ConfirmPassFragment.newInstance())
                     ?.addToBackStack("confirm pass")
@@ -69,6 +73,14 @@ class ConfirmEmailFragment : Fragment() {
     private fun initView(view: View) {
         resend = view.findViewById(R.id.button_resend)
         timmer = view.findViewById(R.id.timmer)
+    }
+
+    fun savePass(pass: String) {
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()) {
+            putString(PASS, pass)
+            apply()
+        }
     }
 
     companion object {

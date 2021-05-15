@@ -17,6 +17,8 @@ class HomeActivity : AppCompatActivity() {
         setAction()
     }
 
+    lateinit var bottomNavigationView: BottomNavigationView
+
     private fun setAction() {
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
@@ -63,6 +65,12 @@ class HomeActivity : AppCompatActivity() {
             "detail new" -> {
                 supportFragmentManager.popBackStack()
             }
+            "menu" -> {
+                super.onBackPressed()
+            }
+            "coin" -> {
+                super.onBackPressed()
+            }
             "home" -> {
                 val builder = AlertDialog.Builder(this@HomeActivity)
                 builder.setTitle("TRADIX")
@@ -73,7 +81,7 @@ class HomeActivity : AppCompatActivity() {
                 val alert = builder.create()
                 alert.show()
             }
-            else -> {
+            "news" -> {
                 super.onBackPressed()
             }
         }
@@ -96,7 +104,5 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
-
-    lateinit var bottomNavigationView: BottomNavigationView
 
 }
